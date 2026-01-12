@@ -167,7 +167,13 @@ function About() {
             year="2010 – 2020"
             img="/scl.jpeg"
             accent="from-cyan-400 to-blue-500"
-            desc="Completed my school journey with curiosity and discipline."
+            desc="An exploring, wicked, and carefree kid — I spent most of my time playing, hanging out with friends, and chasing fun. Studying felt like a ghost haunting me, while cartoons, mobile games, and PC games were the holy saviors that kept me safe from it.
+
+But somewhere along the way, I fell in love with technology — the PC itself, the keyboard buttons, the mouse, even the spinning wheel inside the CPU. Those tiny details fascinated me. Science, meanwhile, felt like a roller-coaster ride for little me. Nature’s wonders truly wondered me.
+
+Curiosity slowly took over — how things work, what lies in the unknown, in the air, under the sea, and beyond outer space. All of it became my personal dreamland. That curiosity made physics and math my favorite subjects, and in that innocent mind, I dreamed of becoming a scientist 😄 — a crazy one, running experiments and discovering new things.
+
+I don’t really know how I ended up finishing school with pretty good grades — maybe it was that adventurous mindset, always trying to find excitement and meaning beyond the textbook pages."
             link="https://khsc.edu.bd/"
             index={0}
           />

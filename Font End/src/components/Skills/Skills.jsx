@@ -28,6 +28,13 @@ function Skills() {
   const cp = useRef(null);
   const wish = useRef(null);
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(() => {
     // Hero animations
     const tl = gsap.timeline();
@@ -45,53 +52,55 @@ function Skills() {
       ease: "power3.out"
     }, "-=0.6");
 
-    // Scroll-triggered card animations
+    // FIXED: Scroll-triggered card animations
+    // Option 1: Smooth one-time animations (RECOMMENDED)
     gsap.from(web.current, {
-      x: -100,
+      x: -200,
       opacity: 0,
-      duration: 1,
+      duration: 1.2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: web.current,
-        start: "top 85%",
+        start: "top 80%",
         end: "top 50%",
-        scrub: 1,
+        toggleActions: "play none none reverse",
+        // markers: true, // Uncomment to debug
       }
     });
 
     gsap.from(cp.current, {
-      x: 100,
+      x: 200,
       opacity: 0,
-      duration: 1,
+      duration: 1.2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: cp.current,
-        start: "top 85%",
+        start: "top 80%",
         end: "top 50%",
-        scrub: 1,
+        toggleActions: "play none none reverse",
+        // markers: true,
       }
     });
 
     gsap.from(wish.current, {
       y: 100,
       opacity: 0,
-      duration: 1,
+      duration: 1.2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: wish.current,
-        start: "top 85%",
+        start: "top 80%",
         end: "top 50%",
-        scrub: 1,
+        toggleActions: "play none none reverse",
+        // markers: true,
       }
     });
-  }, []);
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [loading]); // Added loading dependency
 
   if (loading) return <MursalinLoader />;
 
@@ -195,8 +204,6 @@ const SkillCard = forwardRef(({ title, description, color, children }, ref) => {
     green: "from-purple-900 via-purple-800 to-purple-700",
     orange: "from-teal-900 via-teal-800 to-teal-700",
   };
-
-  
 
   return (
     <div ref={ref} className={`relative rounded-2xl md:rounded-3xl bg-gradient-to-b ${colorMap[color]} overflow-hidden transform transition-all duration-300 hover:scale-[1.01]`}>
